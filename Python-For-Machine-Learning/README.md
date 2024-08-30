@@ -32,7 +32,7 @@
 - The different types of recommender systems
 - How to implement recommender system on a real dataset
 
-### 01 Introduction to Machine Learning
+# 01 Introduction to Machine Learning
 
 - **Supervised Learning** 
 	- (e.g., Linear Regression, Decision Trees ) 
