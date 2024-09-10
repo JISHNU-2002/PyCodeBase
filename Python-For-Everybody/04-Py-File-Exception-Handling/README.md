@@ -1,4 +1,4 @@
-### Introduction to File & Exception Handling
+# Introduction to File & Exception Handling
 - `try` block contains the code that might raise an exception
 - `except` blocks handle specific exceptions
 - `else` block executes if no exceptions are raised

@@ -1,4 +1,4 @@
-# Some Py-Modules
+# Introduction to some Python Modules
 ## 01 py_compile
 - **Automatic Compilation** : Python compiles scripts to bytecode before running them, creating `.pyc` files
 - **Manual Compilation** : Use `py_compile` and `compileall` modules
