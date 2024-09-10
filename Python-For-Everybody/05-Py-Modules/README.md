@@ -735,6 +735,7 @@ Full Name ['Charlie' 'David' 'Eve']
 Age [22. 32. 29.]
 Location ['Chicago' 'Houston' 'Miami']
 ```
+
 #### CSV Files
 - **Pandas** is a powerful data manipulation and analysis library for Python
 - **Manipulating Data** : Performing operations like filtering, grouping, and aggregating
