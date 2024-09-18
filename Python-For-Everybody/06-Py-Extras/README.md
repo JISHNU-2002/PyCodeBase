@@ -913,3 +913,55 @@ python example.py
 
 - **Using `requirements.txt`:** Always keep your `requirements.txt` file updated, and use it to recreate the environment on other machines or when sharing the project with others
 
+
+# Py-Advanced
+1. **Advanced Data Structures:**
+    - Linked lists, stacks, queues
+    - Trees and graphs
+    - Heaps and priority queues
+2. **Advanced OOP:**
+    - Metaclasses
+    - Decorators
+    - Property decorators (`@property`)
+3. **Concurrency and Parallelism:**
+    - Multithreading
+    - Multiprocessing
+    - Asynchronous programming (`asyncio`)
+4. **Web Development:**
+    - Flask or Django: web frameworks
+    - RESTful APIs: creating and consuming APIs
+    - Working with databases: SQLAlchemy or Django ORM
+5. **Testing and Debugging:**
+    - Unit testing with `unittest` or `pytest`
+    - Debugging techniques
+    - Code coverage and continuous integration
+6. **Version Control:**
+    - Git basics
+    - Branching and merging
+    - Collaboration with GitHub
+
+### **Specialized Areas (Optional):**
+1. **Data Science and Machine Learning:**
+    - Scikit-learn: machine learning library
+    - TensorFlow or PyTorch: deep learning frameworks
+    - Exploratory data analysis (EDA)
+2. **Automation and Scripting:**
+    - Automate repetitive tasks
+    - Scripting for system administration
+3. **Networking:**
+    - Understanding sockets
+    - Networking protocols
+4. **Ethical Hacking:**
+    - Understanding cybersecurity basics
+    - Writing scripts for penetration testing
+
+
+## 1. **Advanced Data Structures**
+
+### 01 Linked lists
+- Linked lists are a fundamental data structure in computer science, used to implement other data structures like stacks, queues, and more complex data structures
+- Unlike arrays, linked lists provide a dynamic way of storing data elements
+- Each element in a linked list is called a node, and each node has two parts: data and a reference (or pointer) to the next node in the sequence
+
+1. **Node Class**: Each node has a data field and a next field which points to the next node in the list
+2. **LinkedList Class**: This class will manage the nodes and provide methods to manipulate the linked list
