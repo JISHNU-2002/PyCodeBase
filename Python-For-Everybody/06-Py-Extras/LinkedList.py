@@ -10,12 +10,14 @@ class LinkedList:
     def isEmpty(self):
         return self.head is None
     
-    def insertFront(self, data):
+    def insertFront(self):
+        data = int(input("\nEnter value : "))
         new_node = Node(data)
         new_node.next = self.head
         self.head = new_node
         
-    def insertBack(self, data):
+    def insertBack(self):
+        data = int(input("\nEnter value : "))
         new_node = Node(data)
         
         if self.isEmpty():
@@ -27,9 +29,12 @@ class LinkedList:
             ptr = ptr.next
         ptr.next = new_node
         
-    def insertPosition(self, data, pos):
+    def insertAtPosition(self):
+        data = int(input("\nEnter value : "))
+        pos = int(input("\nEnter position : "))
+        
         if pos == 0:
-            self.insertFront(data)
+            self.insertFront()
             return 
         
         new_node = Node(data)
@@ -69,7 +74,8 @@ class LinkedList:
             ptr = ptr.next
         ptr.next = None
         
-    def deleteAtPosition(self, pos):
+    def deleteAtPosition(self):
+        pos = int(input("\nEnter position : "))
         if self.isEmpty():
             print('Underflow')
             return
@@ -91,7 +97,8 @@ class LinkedList:
         
         ptr.next = ptr.next.next
         
-    def deleteFirstOccurence(self, value):
+    def deleteFirstOccurrence(self):
+        value = int(input("\nEnter value : "))
         if self.isEmpty():
             print('Underflow')
             return
@@ -106,53 +113,62 @@ class LinkedList:
                 ptr.next = ptr.next.next
                 return
             ptr = ptr.next
-        print('Value not found in list')
+        print(f'{value} not found in list')
 
-    def deleteLastOccurence(self, value):
+    def deleteLastOccurrence(self):
+        value = int(input("\nEnter value : "))
         if self.isEmpty():
             print('Underflow')
             return
 
         last_occurrence = None
-        prev = None
+        last_occurrence_prev = None
         ptr = self.head
-        
+        prev = None
+
         while ptr:
             if ptr.data == value:
                 last_occurrence = ptr
-                prev = prev if last_occurrence else None
+                last_occurrence_prev = prev
             prev = ptr
             ptr = ptr.next
 
         if not last_occurrence:
-            print('Value not found in list')
+            print(f'{value} not found in list')
             return
 
         if last_occurrence == self.head:
             self.head = self.head.next
         else:
-            prev.next = last_occurrence.next
+            last_occurrence_prev.next = last_occurrence.next
 
 
-    def deleteAllOccurence(self, value):
+    def deleteAllOccurrences(self):
+        value = int(input("\nEnter value : "))
         if self.isEmpty():
             print('Underflow')
             return
         
+        found = False
         while self.head and self.head.data == value:
             self.head = self.head.next
+            found = True
         
         ptr = self.head
         while ptr and ptr.next:
             if ptr.next.data == value:
                 ptr.next = ptr.next.next
+                found = True
             else:
                 ptr = ptr.next
         
-        if self.isEmpty():
+        if not found:
+            print(f'{value} not found in list')
+        elif self.isEmpty():
             print('List is empty after deletion')
-        elif ptr is None or ptr.next is None:
-            print('Value not found in list')
+        else:
+            print(f'All occurrences of {value} have been deleted')
+
 
     def reverse(self):
         prev = None
@@ -176,28 +192,42 @@ class LinkedList:
             ptr = ptr.next
         print(nodes)  
 
+def main():
+    obj = LinkedList()
+    while True:
+        print("\n\
+        Linked List Operations\n\
+        ----------------------\n\
+        1. Insert in beginning\n\
+        2. Insert at last\n\
+        3. Insert at any random location\n\
+        4. Delete from beginning\n\
+        5. Delete from last\n\
+        6. Delete node from specified location\n\
+        7. Delete first Occurrence of a Value\n\
+        8. Delete last Occurrence of a Value\n\
+        9. Delete all Occurrence of a Value\n\
+        10. Reverse the list\n\
+        11. Display\n\
+        12. Exit\n")
+        choice = int(input("Enter your choice : "))
 
-obj = LinkedList()
+        switch = {
+            1: obj.insertFront,
+            2: obj.insertBack,
+            3: obj.insertAtPosition,
+            4: obj.deleteFront,
+            5: obj.deleteBack,
+            6: obj.deleteAtPosition,
+            7: obj.deleteFirstOccurrence,
+            8: obj.deleteLastOccurrence,
+            9: obj.deleteAllOccurrences,
+            10: obj.reverse,
+            11: obj.display,
+            12: exit
+        }
+        func = switch.get(choice, lambda: print("Please enter a valid choice."))
+        func()
 
-obj.insertFront(1)
-obj.insertBack(2)
-obj.insertFront(-1)
-obj.insertBack(3)
-obj.insertFront(-2)
-obj.display()  
-obj.insertPosition(0, 2)
-obj.display()  
-obj.deleteFront()
-obj.display()  
-obj.deleteBack()
-obj.display()  
-obj.deleteAtPosition(1)
-obj.display()  
-obj.reverse()
-obj.display()  
-obj.deleteAtPosition(2)
-obj.display()  
-obj.insertBack(2)
-obj.display()  
-obj.deleteValue(2)
-obj.display()  
+if __name__ == "__main__":
+    main()
