@@ -28,6 +28,7 @@ class DoublyLinkedList():
         
         if self.isEmpty():
             self.head = new_node
+            self.display()
             return
         
         ptr = self.head
@@ -74,6 +75,11 @@ class DoublyLinkedList():
             print('Underflow')
             return
         
+        if self.head.next is None:
+            self.head = None
+            print('Only node in list is deleted')
+            return
+        
         self.head = self.head.next
         self.display()
         
@@ -82,7 +88,7 @@ class DoublyLinkedList():
             print('Underflow')
             return
         
-        if self.head.next is not None:
+        if self.head.next is None:
             self.head = None
             print('Only node in list is deleted')
             return
@@ -94,9 +100,34 @@ class DoublyLinkedList():
         self.display()
         
     def deleteAtPosition(self):
+        pos = int(input('\nEnter the position : '))
+        if pos<0:
+            print('Enter a valid position')
+            return
+        
         if self.isEmpty():
             print('Underflow')
             return
+        
+        if pos == 0:
+            self.deleteFront()
+            return
+        
+        ptr = self.head
+        for i in range(1, pos):
+            if ptr.next is None:
+                print('IndexOutOfBound')
+                return
+            ptr = ptr.next
+            
+            if ptr.next is None:
+                print('IndexOutOfBound')
+                return
+            
+            ptr.next = ptr.next.next
+            if ptr.next is not None:
+                ptr.next.prev = ptr
+            self.display()
         
     def deleteFirstOccurrence(self):
         if self.isEmpty():
