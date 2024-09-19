@@ -15,6 +15,7 @@ class LinkedList:
         new_node = Node(data)
         new_node.next = self.head
         self.head = new_node
+        self.display()
         
     def insertBack(self):
         data = int(input("\nEnter value : "))
@@ -28,16 +29,17 @@ class LinkedList:
         while ptr.next:
             ptr = ptr.next
         ptr.next = new_node
+        self.display()
         
     def insertAtPosition(self):
-        data = int(input("\nEnter value : "))
         pos = int(input("\nEnter position : "))
+        if pos<0:
+            print('Enter a valid position')
+            return
         
         if pos == 0:
             self.insertFront()
             return 
-        
-        new_node = Node(data)
         
         ptr = self.head
         for i in range(1, pos):
@@ -50,14 +52,19 @@ class LinkedList:
             print('IndexOutOfBound')
             return
         
+        data = int(input("\nEnter value : "))
+        new_node = Node(data)
+        
         new_node.next = ptr.next
         ptr.next = new_node
+        self.display()
             
     def deleteFront(self):
         if self.isEmpty():
             print('Underflow')
             return
         self.head = self.head.next
+        self.display()
         
     def deleteBack(self):
         if self.isEmpty():
@@ -73,9 +80,14 @@ class LinkedList:
         while ptr.next.next:
             ptr = ptr.next
         ptr.next = None
+        self.display()
         
     def deleteAtPosition(self):
         pos = int(input("\nEnter position : "))
+        if pos<0:
+            print('Enter a valid position')
+            return
+        
         if self.isEmpty():
             print('Underflow')
             return
@@ -96,6 +108,7 @@ class LinkedList:
             return
         
         ptr.next = ptr.next.next
+        self.display()
         
     def deleteFirstOccurrence(self):
         value = int(input("\nEnter value : "))
@@ -105,12 +118,14 @@ class LinkedList:
         
         if self.head.data == value:
             self.head = self.head.next
+            self.display()
             return
         
         ptr = self.head
         while ptr.next:
             if ptr.next.data == value:
                 ptr.next = ptr.next.next
+                self.display()
                 return
             ptr = ptr.next
         print(f'{value} not found in list')
@@ -139,9 +154,10 @@ class LinkedList:
 
         if last_occurrence == self.head:
             self.head = self.head.next
+            self.display()
         else:
             last_occurrence_prev.next = last_occurrence.next
-
+            self.display()
 
     def deleteAllOccurrences(self):
         value = int(input("\nEnter value : "))
@@ -167,6 +183,7 @@ class LinkedList:
         elif self.isEmpty():
             print('List is empty after deletion')
         else:
+            self.display()
             print(f'All occurrences of {value} have been deleted')
 
 
@@ -179,6 +196,7 @@ class LinkedList:
             prev = current
             current = next_node
         self.head = prev
+        self.display()
     
     def display(self):
         if self.isEmpty():
