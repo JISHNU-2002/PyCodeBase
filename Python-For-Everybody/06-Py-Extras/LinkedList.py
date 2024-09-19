@@ -186,7 +186,11 @@ class LinkedList:
             self.display()
             print(f'All occurrences of {value} have been deleted')
 
-
+    def emptyList(self):
+        self.head = None
+        self.display()
+        print('List is Empty')
+        
     def reverse(self):
         prev = None
         current = self.head
@@ -225,9 +229,10 @@ def main():
         7. Delete first Occurrence of a Value\n\
         8. Delete last Occurrence of a Value\n\
         9. Delete all Occurrence of a Value\n\
-        10. Reverse the list\n\
-        11. Display\n\
-        12. Exit\n")
+        10. Empty the List\n\
+        11. Reverse the list\n\
+        12. Display\n\
+        13. Exit\n")
         choice = int(input("Enter your choice : "))
 
         switch = {
@@ -240,11 +245,12 @@ def main():
             7: obj.deleteFirstOccurrence,
             8: obj.deleteLastOccurrence,
             9: obj.deleteAllOccurrences,
-            10: obj.reverse,
-            11: obj.display,
-            12: exit
+            10: obj.emptyList,
+            11: obj.reverse,
+            12: obj.display,
+            13: exit
         }
-        func = switch.get(choice, lambda: print("Please enter a valid choice."))
+        func = switch.get(choice, lambda: print("Please enter a valid choice"))
         func()
 
 if __name__ == "__main__":
