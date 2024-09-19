@@ -1,7 +1,7 @@
 class Node():
-    def __init__(self):
+    def __init__(self, data):
         self.prev = None
-        self.data = None
+        self.data = data
         self.next = None
         
 class DoublyLinkedList():
@@ -15,9 +15,12 @@ class DoublyLinkedList():
         data = int(input('\nEnter value : '))
         new_node = Node(data)
         new_node.next = self.head
-        self.head.prev = new_node
+        
+        if not self.isEmpty():
+            self.head.prev = new_node
+            
         self.head = new_node
-        print(f'{data} inserted at front')
+        self.display()
         
     def insertBack(self):
         data = int(input('\nEnter value : '))
@@ -32,16 +35,18 @@ class DoublyLinkedList():
             ptr = ptr.next
         ptr.next = new_node
         new_node.prev = ptr
-        print(f'{data} inserted at back')
+        self.display()
         
     def insertAtPosition(self):
-        data = int(input('\nEnter value : '))
-        pos = int(input('\nEnter position : '))
-        new_node = Node(data)
-        
+        pos = int(input('\nEnter position : '))   
+        if pos<0:
+            print('Enter a valid position')
+            return
+             
         if pos == 0:
             self.insertFront()
-            
+            return
+        
         ptr = self.head
         for i in range(1, pos):
             if ptr is None:
@@ -53,14 +58,67 @@ class DoublyLinkedList():
             print('IndexOutOfBound')
             return 
         
+        data = int(input('\nEnter value : '))
+        new_node = Node(data)
+        
         new_node.next = ptr.next
+        if ptr.next is not None:
+            ptr.next.prev = new_node
+            
+        ptr.next = new_node
         new_node.prev = ptr
-        print(f'{data} inserted at position {pos}')
+        self.display()
+        
+    def deleteFront(self):
+        if self.isEmpty():
+            print('Underflow')
+            return
+        
+        self.head = self.head.next
+        self.display()
+        
+    def deleteBack(self):
+        if self.isEmpty():
+            print('Underflow')
+            return
+        
+    def deleteAtPosition(self):
+        if self.isEmpty():
+            print('Underflow')
+            return
+        
+    def deleteFirstOccurrence(self):
+        if self.isEmpty():
+            print('Underflow')
+            return
+        
+    def deleteLastOccurrence(self):
+        if self.isEmpty():
+            print('Underflow')
+            return
+        
+    def deleteAllOccurrences(self):
+        if self.isEmpty():
+            print('Underflow')
+            return
+        
+    def reverse(self):
+        if self.isEmpty():
+            print('Underflow')
+            return
         
     def display(self):
         if self.isEmpty():
             print('Underflow')
+        
+        ptr = self.head
+        nodes = []
+        while ptr:
+            nodes.append(ptr.data)
+            ptr = ptr.next
+        print(nodes)
             
+        
 def main():
     obj = DoublyLinkedList()
     while True:
@@ -95,7 +153,7 @@ def main():
             11: obj.display,
             12: exit
         }
-        func = switch.get(choice, lambda: print("Please enter a valid choice."))
+        func = switch.get(choice, lambda: print("Please enter a valid choice"))
         func()
 
 if __name__ == "__main__":
