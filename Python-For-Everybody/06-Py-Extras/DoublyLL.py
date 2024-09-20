@@ -100,13 +100,13 @@ class DoublyLinkedList():
         self.display()
         
     def deleteAtPosition(self):
+        if self.isEmpty():
+            print('Underflow')
+            return
+        
         pos = int(input('\nEnter the position : '))
         if pos<0:
             print('Enter a valid position')
-            return
-        
-        if self.isEmpty():
-            print('Underflow')
             return
         
         if pos == 0:
@@ -120,29 +120,85 @@ class DoublyLinkedList():
                 return
             ptr = ptr.next
             
-            if ptr.next is None:
-                print('IndexOutOfBound')
-                return
-            
-            ptr.next = ptr.next.next
-            if ptr.next is not None:
-                ptr.next.prev = ptr
-            self.display()
+        if ptr.next is None:
+            print('IndexOutOfBound')
+            return
         
+        ptr.next = ptr.next.next
+        if ptr.next is not None:
+            ptr.next.prev = ptr
+        self.display()
+    
     def deleteFirstOccurrence(self):
         if self.isEmpty():
             print('Underflow')
             return
+        
+        value = int(input("\nEnter value : "))
+        ptr = self.head
+        
+        while ptr:
+            if ptr.data == value:
+                if ptr.prev is not None:
+                    ptr.prev.next = ptr.next
+                if ptr.next is not None:
+                    ptr.next.prev = ptr.prev
+                if ptr == self.head:
+                    self.head = self.head.next
+                self.display()
+                return
+            ptr = ptr.next
+        print(f'{value} not present in list')
         
     def deleteLastOccurrence(self):
         if self.isEmpty():
             print('Underflow')
             return
         
+        value = int(input("\nEnter value : "))
+        last_occurence = None
+        ptr = self.head
+        
+        while ptr:
+            if ptr.data == value:
+                last_occurence = ptr
+            ptr = ptr.next
+        
+        if last_occurence is None:
+            print(f'{value} not present in list')
+            return 
+        
+        if last_occurence.prev is not None:
+            last_occurence.prev.next = last_occurence.next
+        if last_occurence.next is not None:
+            last_occurence.next.prev = last_occurence.prev
+        if last_occurence == self.head:
+            self.head = self.head.next
+        self.display()
+        
     def deleteAllOccurrences(self):
         if self.isEmpty():
             print('Underflow')
             return
+        
+        value = int(input("\nEnter value : "))
+        ptr = self.head
+        found = False
+        
+        while ptr:
+            if ptr.data == value:
+                if ptr.prev is not None:
+                    ptr.prev.next = ptr.next
+                if ptr.next is not None:
+                    ptr.next.prev = ptr.prev
+                if ptr == self.head:
+                    self.head = self.head.next
+                found = True
+            ptr = ptr.next
+            
+        if not found:
+            print(f'{value} not present in list')
+        else: self.display()
         
     def emptyList(self):
         self.head = None
@@ -153,6 +209,21 @@ class DoublyLinkedList():
         if self.isEmpty():
             print('Underflow')
             return
+        
+        current = self.head
+        prev = None
+        
+        while current:
+            prev = current.prev
+            current.prev = current.next
+            current.next = prev
+            current = current.prev
+        # After the loop, prev points to the old head's previous node
+        if prev:
+            self.head = prev.prev
+        
+        self.display()
+
         
     def display(self):
         if self.isEmpty():
