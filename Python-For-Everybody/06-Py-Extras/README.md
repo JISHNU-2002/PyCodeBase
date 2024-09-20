@@ -965,3 +965,31 @@ python example.py
 
 1. **Node Class**: Each node has a data field and a next field which points to the next node in the list
 2. **LinkedList Class**: This class will manage the nodes and provide methods to manipulate the linked list
+
+### 02 Stack
+
+### 03 Queue
+
+### 04 Tree
+A **tree** is a data structure composed of nodes, where each node has a value and a list of references to other nodes (its children). Trees are often used to represent hierarchical data structures. A tree has the following characteristics:
+- **Root**: The topmost node in a tree.
+- **Parent**: A node that has one or more child nodes.
+- **Child**: A node that has a parent node.
+- **Leaf**: A node that does not have any children.
+- **Subtree**: A tree consisting of a node and its descendants.
+
+### Binary Tree
+
+A **binary tree** is a type of tree where each node has at most two children, typically referred to as the left child and the right child. Binary trees are used in various applications, such as expression parsing, sorting, and searching. Key properties include:
+- **Left Child**: The node directly connected to the left of the parent node.
+- **Right Child**: The node directly connected to the right of the parent node.
+
+### Binary Search Tree (BST)
+
+A **binary search tree (BST)** is a special type of binary tree where the nodes are arranged in a specific order:
+- The left subtree of a node contains only nodes with values less than the node’s value.
+- The right subtree of a node contains only nodes with values greater than the node’s value.
+- Both the left and right subtrees must also be binary search trees.
+
+This property of BSTs allows for efficient searching, insertion, and deletion operations. The average time complexity for these operations is O(log n), where n is the number of nodes in the tree. However, in the worst case (e.g., when the tree becomes unbalanced and resembles a linked list), the time complexity can degrade to O(n).
+
