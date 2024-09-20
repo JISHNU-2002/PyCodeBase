@@ -173,16 +173,32 @@ class CircularLinkedList():
             
         value = int(input('\nEnter value : '))
         ptr = self.head
+        start = ptr
         found = False
         
-        while ptr:
+        while True:
             if ptr.data == value:
+                found = True
                 if ptr == self.head:
-                    self.deleteFront()
+                    if ptr.next == self.head:
+                        self.head = None
+                        print('Only node in list deleted')
+                        return
+                    else:
+                        ptr.prev.next = self.head.next
+                        ptr.next.prev = self.head.prev
+                        self.head = ptr.next
+                else:
+                    ptr.prev.next = ptr.next
+                    ptr.next.prev = ptr.prev
             ptr = ptr.next
-            
-            if ptr == self.head:
+            if ptr == start:
                 break
+        
+        if found:
+            self.display()
+        else:
+            print(f'{value} not present in list')
     
     def reverse(self):
         if self.isEmpty():
